@@ -12,13 +12,18 @@ router.get("/:id?", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req);
   chirpStore.CreateChirp(req.body);
-  res.send("posted yo!");
+  res.send("Your chirp has been posted!");
 });
 
-router.put("/", (req, res) => {});
+router.put("/", (req, res) => {
+  chirpStore.UpdateChirp(req.body.id, req.body.chirp);
+  res.send("Your chirp has been updated!");
+});
 
-router.delete("/", (req, res) => {});
+router.delete("/", (req, res) => {
+  chirpStore.DeleteChirp(req.body.id);
+  res.send("Your chirp has been deleted!");
+});
 
 module.exports = router;
